@@ -13,4 +13,13 @@ class Account
     @balance -= amount
   end
 
+  def display_balance
+    "Your balance is £#{@balance}."
+  end
+
+  def transfer(amount, account)
+    self.withdraw(amount)
+    account.deposit(amount)
+  end
+
 end
