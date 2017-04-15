@@ -1,11 +1,13 @@
 class Account
-  attr_reader :balance
+  attr_reader :balance, :payees
 
   def initialize
     @balance = 0
+    @payees = []
   end
 
   def deposit(amount)
+
     @balance += amount
   end
 
@@ -18,8 +20,15 @@ class Account
   end
 
   def transfer(amount, account)
-    self.withdraw(amount)
+    @payees << account.to_s
+    withdraw(amount)
     account.deposit(amount)
   end
+
+  def print_payees
+
+    print @payees
+  end
+
 
 end
