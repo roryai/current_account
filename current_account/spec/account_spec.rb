@@ -42,12 +42,16 @@ describe Account do
       expect{account.print_payees}.to output("[\"#{account2.to_s}\"]").to_stdout
     end
 
-
-
+    # refactor this into multiple tests
     it 'keeps a record of payments' do
       account.transfer(9, account2)
-      expect(account.transaction_history[0][0][:deposit]).to eq 10
-      expect(account.transaction_history[1][0][:transfer]).to eq 9
+      expect(account.transaction_history[1][:amount]).to eq 9
+      expect(account.transaction_history[1][:type]).to eq 'Transfer'
+    end
+
+    it 'can output the transaction history in a readable format' do
+      account.generate_statement
+      # expect(account.generate_statement).to eq
     end
 
 end

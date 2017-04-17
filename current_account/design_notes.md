@@ -2,7 +2,13 @@
 
 ####Testing @transaction_history
 
-Whilst testing the @transfer_history array I encountered a problem: the time in the expected string does not have double quotes surrounding it, whilst the received string does. THis is the test:
+Whilst testing the @transfer_history array I encountered a problem: the time in the expected string does not have double quotes surrounding it, whilst the received string does.
+
+At the time this test was written, the transaction was stored like this:
+
+`[{transfer: amount}, {payee: account.to_s}, {time: Time.new.strftime("%F %T")}]`
+
+This is the test:
 
 `it 'keeps a record of payments' do
   account.transfer(9, account2)
