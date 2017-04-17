@@ -31,7 +31,7 @@ class Account
   end
 
   def print_payees
-    print @payees
+    puts @payees
   end
 
   def generate_statement
@@ -41,7 +41,7 @@ class Account
       elsif transaction[:type] == 'Withdrawal'
         withdrawal_formatter(transaction)
       elsif transaction[:type] == 'Transfer'
-        transfer_formatter(transaction)
+        transaction_formatter(transaction)
       end
     end
   end
@@ -49,15 +49,19 @@ class Account
   # {type: 'Deposit', amount: amount, time: Time.new.strftime("%F %T")}
 
   def deposit_formatter(transaction)
-    @statement << "Deposit     |  £#{transaction[:amount]}  |  #{transaction[:time].strftime("%F")}  |  #{transaction[:balance]}"
+    @statement << "Deposit     |  £#{transaction[:amount]}  |  #{transaction[:time]}  |  £#{transaction[:balance]}"
   end
 
   def withdrawal_formatter(transaction)
-    @statement << "Withdrawal  |  £#{transaction[:amount]}  |  #{transaction[:time].strftime("%F")}  |  #{transaction[:balance]}"
+    @statement << "Withdrawal  |  £#{transaction[:amount]}  |  #{transaction[:time]}  |  £#{transaction[:balance]}"
   end
 
   def transaction_formatter(transaction)
-    @statement << "Transfer    |  £#{transaction[:amount]}  |  #{transaction[:time].strftime("%F")}  |  #{transaction[:balance]}\nTransferred to #{transaction[:payee]}"
+    @statement << "Transfer    |  £#{transaction[:amount]}  |  #{transaction[:time]}  |  £#{transaction[:balance]}\nTransferred to #{transaction[:payee]}"
+  end
+
+  def print_statement
+    puts @statement
   end
 
 end

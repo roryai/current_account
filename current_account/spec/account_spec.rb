@@ -8,6 +8,7 @@ describe Account do
     account.deposit(10)
   end
 
+
     it 'has a balance' do
       expect(account.balance).to be 10
     end
@@ -39,7 +40,7 @@ describe Account do
 
     it 'displays a list of previous payees' do
       account.transfer(3, account2)
-      expect{account.print_payees}.to output("[\"#{account2.to_s}\"]").to_stdout
+      expect{account.print_payees}.to output("#{account2.to_s}\n").to_stdout
     end
 
     # refactor this into multiple tests
@@ -50,9 +51,11 @@ describe Account do
     end
 
     it 'can output the transaction history in a readable format' do
-      account.generate_statement
-      p account.statement
-      # expect(account.generate_statement).to eq
+          account.transfer(9, account2)
+          account.generate_statement
+          expect{account.print_statement}.to output("Deposit     |  £10  |  #{Time.new.strftime("%F %T")}  |  £10\nTransfer    |  £9  |  #{Time.new.strftime("%F %T")}  |  £1\nTransferred to #{account2.to_s}\n").to_stdout
     end
+
+
 
 end
