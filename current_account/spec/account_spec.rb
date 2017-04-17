@@ -41,5 +41,10 @@ describe Account do
       account.transfer(3, account2)
       expect{account.print_payees}.to output("[\"#{account2.to_s}\"]").to_stdout
     end
-    # .to output('foo').to_stdout
+
+    it 'keeps a record of payments' do
+      account.transfer(9, account2)
+      expect(account.transaction_history).to eq "[[{:deposit=>10}, {:time=>#{Time.new.strftime("%F %T")}}], [{:transfer=>9}, {:payee=>\"#<Account:0x007fa0bb057b30>\"}, {:time=>#{Time.new.strftime("%F %T")}}]]"
+    end
+
 end
