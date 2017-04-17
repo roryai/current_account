@@ -18,7 +18,7 @@ describe Account do
     expect{account.record.print_payees}.to output("#{account2.to_s}\n").to_stdout
   end
 
-  # refactor this into multiple tests
+  # this has two matchers but as it is checking two results of the same method I decided to have it like this.
   it 'keeps a record of payments' do
     account.transfer(9, account2)
     expect(account.record.transaction_history[1][:amount]).to eq 9
@@ -26,9 +26,8 @@ describe Account do
   end
 
   it 'can output the transaction history in a readable format' do
-        account.transfer(9, account2)
-        expect{account.record.print_statement}.to output("Deposit     |  £10  |  #{Time.new.strftime("%F %T")}  |  £10\nTransfer     |  £9  |  #{Time.new.strftime("%F %T")}  |  £1\nTransferred to #{account2.to_s}\n").to_stdout
+    account.transfer(9, account2)
+    expect{account.record.print_statement}.to output("Transaction type |  Amount  |         Date          |  Balance\nDeposit          |  £10     |  #{Time.new.strftime("%F %T")}  |  £10\nTransfer         |  £9      |  #{Time.new.strftime("%F %T")}  |  £1\nTransferred to #{account2.to_s}\n").to_stdout
   end
-
 
 end

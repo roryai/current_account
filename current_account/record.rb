@@ -6,10 +6,12 @@ class Record
     @transaction_history = []
     @payees = []
     @formatted_rows = []
+    @statement_header = "Transaction type |  Amount  |         Date          |  Balance"
   end
 
   def print_statement
     generate_statement
+    puts @statement_header
     puts @formatted_rows
   end
 
@@ -27,7 +29,16 @@ class Record
   end
 
   def statement_row_formatter(transaction)
-    "#{transaction[:type]}     |  £#{transaction[:amount]}  |  #{transaction[:time]}  |  £#{transaction[:balance]}"
+    "#{transaction[:type]}" + transaction_type_spacer(transaction) + "|  £#{transaction[:amount]}" + amount_spacer(transaction) + "|  #{transaction[:time]}  |  £#{transaction[:balance]}"
   end
+
+  def amount_spacer(transaction)
+    (" " * (7 - transaction[:amount].to_s.length))
+  end
+
+  def transaction_type_spacer(transaction)
+    (" " * (17 - transaction[:type].length))
+  end
+
 
 end
