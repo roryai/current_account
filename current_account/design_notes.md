@@ -29,15 +29,15 @@ Note: I was aware that comparing the time in the array to the time generated whe
 
 My next attempt was to read the time directly from the array and interpolate it into the string expected by rspec. This resulted in more formatting issues and isn't an effective test. In the end I decided on the unit test below, which reads the deposit and transfer amounts only. This is not perfect but it is an improvement on the above test.
 
-`it 'keeps a record of payments' do`
+`it 'keeps a record of payments' do
 
-  `account.transfer(9, account2)`
+  account.transfer(9, account2)
 
-  `expect(account.transaction_history[0][0][:deposit]).to eq 10`
+  expect(account.transaction_history[0][0][:deposit]).to eq 10
 
-  `expect(account.transaction_history[1][0][:transfer]).to eq 9`
-  
-`end`
+  expect(account.transaction_history[1][0][:transfer]).to eq 9
+
+end`
 
 The best test for this aspect of the program would be a feature test of the output of the transaction history as seen by the user (this method has not yet been built), rather than a unit test of the array contents.
 
