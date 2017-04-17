@@ -51,6 +51,7 @@ describe Account do
 
     it 'can output the transaction history in a readable format' do
       account.generate_statement
+      p account.statement
       # expect(account.generate_statement).to eq
     end
 

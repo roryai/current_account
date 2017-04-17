@@ -1,20 +1,21 @@
 class Account
-  attr_reader :balance, :payees, :transaction_history
+  attr_reader :balance, :payees, :transaction_history, :statement
 
   def initialize
     @balance = 0
     @payees = []
     @transaction_history = []
+    @statement = []
   end
 
   def deposit(amount)
     @balance += amount
-    @transaction_history << {type: 'Deposit', amount: amount, time: Time.new.strftime("%F %T")}
+    @transaction_history << {type: 'Deposit', amount: amount, time: Time.new.strftime("%F %T"), balance: @balance}
   end
 
   def withdraw(amount)
     @balance -= amount
-    @transaction_history << {type: 'Withdrawal', amount: amount, time: Time.new.strftime("%F %T")}
+    @transaction_history << {type: 'Withdrawal', amount: amount, time: Time.new.strftime("%F %T"), balance: @balance}
   end
 
   def display_balance
@@ -26,7 +27,7 @@ class Account
     @balance -= amount
     # this gives accounts too much visibility and control of each other. Transfers would ideally be carried out by a Bank class, rather than directly between the accounts.
     account.deposit(amount)
-    @transaction_history << {type: 'Transfer', amount: amount, payee: account.to_s, time: Time.new.strftime("%F %T")}
+    @transaction_history << {type: 'Transfer', amount: amount, payee: account.to_s, time: Time.new.strftime("%F %T"), balance: @balance}
   end
 
   def print_payees
@@ -45,18 +46,18 @@ class Account
     end
   end
 
-
+  # {type: 'Deposit', amount: amount, time: Time.new.strftime("%F %T")}
 
   def deposit_formatter(transaction)
-    p 'deposit'
+    @statement << "Deposit     |  £#{transaction[:amount]}  |  #{transaction[:time].strftime("%F")}  |  #{transaction[:balance]}"
   end
 
   def withdrawal_formatter(transaction)
-
+    @statement << "Withdrawal  |  £#{transaction[:amount]}  |  #{transaction[:time].strftime("%F")}  |  #{transaction[:balance]}"
   end
 
   def transaction_formatter(transaction)
-    p 'transaction'
+    @statement << "Transfer    |  £#{transaction[:amount]}  |  #{transaction[:time].strftime("%F")}  |  #{transaction[:balance]}\nTransferred to #{transaction[:payee]}"
   end
 
 end
