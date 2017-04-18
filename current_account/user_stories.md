@@ -22,6 +22,7 @@ As an account holder
 So that I can easily see what I've spent
 I want to see a formatted statement
 
+
 As an account holder
 So that I can pay my bills automatically
 I want to set up a standing order

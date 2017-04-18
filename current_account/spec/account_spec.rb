@@ -8,7 +8,6 @@ describe Account do
     account.deposit(10)
   end
 
-
     it 'has a balance' do
       expect(account.balance).to be 10
     end
@@ -24,7 +23,7 @@ describe Account do
     end
 
     it 'can display balance' do
-      expect(account.display_balance).to eq "Your balance is £10."
+      expect(account.display_balance).to eq "\nYour balance is £10.\n"
     end
 
     it 'accounts can make and receive payments to/from other accounts' do
@@ -32,7 +31,5 @@ describe Account do
       expect(account.balance).to be 4
       expect(account2.balance).to be 6
     end
-
-    
 
 end

@@ -1,7 +1,8 @@
 require_relative 'record.rb'
 
 class Account
-  attr_reader :balance, :record
+  attr_reader :balance
+  attr_accessor :record
 
   def initialize
     @balance = 0
@@ -19,15 +20,14 @@ class Account
   end
 
   def transfer(amount, account)
-    @record.payees << account.to_s
+    @record.payees << account.object_id
     @balance -= amount
-    # this gives accounts too much visibility and control of each other. Transfers would ideally be carried out by a Bank class, rather than directly between the accounts.
     account.deposit(amount)
-    @record.transaction_history << {type: 'Transfer', amount: amount, payee: account.to_s, time: Time.new.strftime("%F %T"), balance: @balance}
+    @record.transaction_history << {type: 'Transfer', amount: amount, payee: account.object_id, time: Time.new.strftime("%F %T"), balance: @balance}
   end
 
   def display_balance
-    "Your balance is £#{@balance}."
+    "\nYour balance is £#{@balance}.\n"
   end
 
 

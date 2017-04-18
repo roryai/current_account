@@ -1,6 +1,6 @@
 class Record
-  attr_reader :payees, :transaction_history, :statement
-
+  attr_reader :transaction_history, :statement
+  attr_accessor :payees
 
   def initialize
     @transaction_history = []
@@ -39,6 +39,5 @@ class Record
   def transaction_type_spacer(transaction)
     (" " * (17 - transaction[:type].length))
   end
-
 
 end
