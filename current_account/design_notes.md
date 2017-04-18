@@ -30,7 +30,6 @@ This is the output from rspec:
 
 `{:payee=>\"#<Account:0x007fa0bb057b30>\"}, {:time=>2017-04-17 10:04:12}]]"`
 
-
 `got: [[{:deposit=>10}, {:time=>"2017-04-17 10:04:12"}], [{:transfer=>9},`
 
 `{:payee=>"#<Account:0x007ff8df045198>"}, {:time=>"2017-04-17 10:04:12"}]]`
