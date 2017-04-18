@@ -2,7 +2,7 @@
 
 This program simulates some functions of a current account.
 
-To run the program, download the repo and in your terminal navigate into the directory containing 'run_me.rb'. THen run the following command:
+To run the program, download the repo and in your terminal navigate into the directory containing 'run_me.rb'. Then run the following command:
 
 `ruby run_me.rb`
 

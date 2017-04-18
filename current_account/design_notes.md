@@ -43,7 +43,7 @@ My next attempt was to read the time directly from the array and interpolate it 
 
 `it 'keeps a record of payments' do`
 
-  `account.transfer(9, account2)``
+  `account.transfer(9, account2)`
 
   `expect(account.transaction_history[0][0][:deposit]).to eq 10`
 
@@ -77,3 +77,5 @@ Calculate interest- this would be calculated on the closing balance each day and
 Standing order- allows the user to set up a fixed payment to take place on a certain day of each month
 
 Include Bank class that would take over transaction between accounts, and possibly withdraw and deposit methods also.
+
+Overdraft limit.
